@@ -8,8 +8,8 @@
     <nav class="site-navbar" :class="'site-navbar--' + navbarLayoutType">
       <div class="site-navbar__header">
         <h1 class="site-navbar__brand">
-          <a class="site-navbar__brand-lg">MI医疗数检系统</a>
-          <a class="site-navbar__brand-mini">OA</a>
+          <a class="site-navbar__brand-lg">MI医疗核查系统</a>
+          <a class="site-navbar__brand-mini">MI</a>
         </h1>
       </div>
       <div class="site-navbar__body clearfix">
@@ -19,17 +19,17 @@
           </el-menu-item>
         </el-menu>
         <el-menu class="site-navbar__menu site-navbar__menu--right" mode="horizontal">
-          <el-menu-item index="1" class="site-navbar__switch">
-            <template #title>
-              <el-badge value="0">
-                <SvgIcon name="duanxin" class="icon-svg duanxin-svg"/>
-              </el-badge>
-            </template>
-          </el-menu-item>
+<!--          <el-menu-item index="1" class="site-navbar__switch">-->
+<!--            <template #title>-->
+<!--              <el-badge value="0">-->
+<!--                <SvgIcon name="duanxin" class="icon-svg duanxin-svg"/>-->
+<!--              </el-badge>-->
+<!--            </template>-->
+<!--          </el-menu-item>-->
           <el-menu-item class="site-navbar__avatar" index="3">
             <el-dropdown>
 							<span class="el-dropdown-link">
-								<img :src="photo"/>
+								<img :src="photo" />
 								{{ name }}
 							</span>
               <template #dropdown>
@@ -94,15 +94,33 @@
           </el-submenu>
 
           <el-submenu
-              index="系统设置"
+              index="数据管理"
               :popper-class="'site-sidebar--' + sidebarLayoutSkin + '-popper'"
-              v-if="isAuth(['ROOT'])"
           >
             <template #title>
               <SvgIcon name="system_fill" class="icon-svg"/>
-              <span slot="title">系统设置</span>
+              <span slot="title">数据管理</span>
             </template>
+            <el-menu-item
+                index="data"
+                v-if="isAuth(['ROOT', 'DATAMANAGER:SELECT'])"
+                @click="$router.push({ name: 'Reimbursement' })"
+            >
+              <SvgIcon name="data" class="icon-svg"/>
+              <span slot="title">报销单</span>
+            </el-menu-item>
           </el-submenu>
+
+<!--          <el-submenu-->
+<!--              index="系统设置"-->
+<!--              :popper-class="'site-sidebar&#45;&#45;' + sidebarLayoutSkin + '-popper'"-->
+<!--              v-if="isAuth(['ROOT'])"-->
+<!--          >-->
+<!--            <template #title>-->
+<!--              <SvgIcon name="system_fill" class="icon-svg"/>-->
+<!--              <span slot="title">系统设置</span>-->
+<!--            </template>-->
+<!--          </el-submenu>-->
         </el-menu>
       </div>
     </aside>

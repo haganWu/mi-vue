@@ -5,26 +5,29 @@ import Home from "../views/home.vue"
 import Role from "../views/role.vue"
 import User from "../views/user.vue"
 import Dept from "../views/dept.vue"
+import Reimbursement from "../views/reimbursement.vue";
 import NotFound from "../views/404.vue"
 
 
-const routes = [{
-    path: '/login',
-    name: 'Login',
-    component: Login
-},
+const routes = [
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
     {
         path: '/',
         name: 'Main',
         component: Main,
-        children: [{
-            path: '/home',
-            name: 'Home',
-            component: Home,
-            meta: {
-                title: '首页',
-            }
-        },
+        children: [
+            {
+                path: '/home',
+                name: 'Home',
+                component: Home,
+                meta: {
+                    title: '首页',
+                }
+            },
             {
                 path: "/role",
                 name: "Role",
@@ -49,6 +52,15 @@ const routes = [{
                 component: Dept,
                 meta: {
                     title: '部门管理',
+                    isTab: true
+                }
+            },
+            {
+                path: '/reimbursement',
+                name: 'Reimbursement',
+                component: Reimbursement,
+                meta: {
+                    title: '报销单',
                     isTab: true
                 }
             }

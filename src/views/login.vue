@@ -6,7 +6,7 @@
           <el-col :offset="4" :span="16">
             <div class="content">
               <div class="title-container">
-                <h2>MI医疗数检系统</h2>
+                <h2>MI医疗核查系统</h2>
                 <span>( Ver 1.0 )</span>
               </div>
               <div v-if="!qrCodeVisible">

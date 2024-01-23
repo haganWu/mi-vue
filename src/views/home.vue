@@ -2,7 +2,7 @@
   <div class="home">
     <el-row :gutter="70" type="flex" justify="center">
       <el-col :span="9" class="left">
-        <h2>MI医疗数检系统</h2>
+        <h2>MI医疗核查系统</h2>
         <div class="desc">
           <p>轻松工作&nbsp;&nbsp;高效办公</p>
           <p>让工作更简单</p>

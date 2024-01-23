@@ -85,7 +85,10 @@ app.config.globalProperties.$echarts = echarts  //设置全局变量$echarts
 
 
 //后端项目的URL根路径
+// 开发环境
 let baseUrl = "http://192.168.2.176:8088/mi-api/"
+// 生产环境
+// let baseUrl = "http://120.78.161.198:8088/mi-api/"
 
 app.config.globalProperties.$baseUrl = baseUrl //设置全局变量$baseUrl
 
