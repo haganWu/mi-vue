@@ -33,12 +33,12 @@
         style="width: 100%;"
         size="medium"
     >
-<!--      <el-table-column type="selection" header-align="center" align="center" width="50"/>-->
-<!--      <el-table-column type="index" header-align="center" align="center" width="100" label="序号">-->
-<!--        <template #default="scope">-->
-<!--          <span>{{ (pageIndex - 1) * pageSize + scope.$index + 1 }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <!--      <el-table-column type="selection" header-align="center" align="center" width="50"/>-->
+      <!--      <el-table-column type="index" header-align="center" align="center" width="100" label="序号">-->
+      <!--        <template #default="scope">-->
+      <!--          <span>{{ (pageIndex - 1) * pageSize + scope.$index + 1 }}</span>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
       <el-table-column prop="patientName" header-align="center" align="center" min-width="100" label="病人姓名"/>
       <el-table-column prop="patientSex" header-align="center" align="center" min-width="60" label="病人性别"/>
       <el-table-column prop="patientTel" header-align="center" align="center" min-width="130" label="病人电话"/>
@@ -75,6 +75,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -94,7 +96,7 @@ export default {
   },
 
   created: function () {
-    // this.loadDataList();
+    this.loadDataList();
   },
   methods: {
     searchHandle: function () {
@@ -116,11 +118,11 @@ export default {
         formData.append('file', file);
         console.info('file', file);
         // 使用axios或其他库发送文件到后端
-        that.$http('data/upload', 'POST', {data: formData}, true, function (resp) {
-          if (resp.rows > 0) {
+        that.$httpUpload('reimbursement/uploadReimbursementData', 'POST', formData, true, function (resp) {
+          console.info('上传结果', resp);
+          if (resp.code === 200) {
+            console.info('上传成功', resp);
             that.loadDataList();
-          } else {
-            console.error('上传失败', resp);
           }
         });
       } else {

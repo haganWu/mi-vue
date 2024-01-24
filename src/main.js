@@ -141,6 +141,54 @@ app.config.globalProperties.$http = function (url, method, data, async, fun) {
     })
 }
 
+app.config.globalProperties.$httpUpload = function (url, method, data, async, fun) {
+    $.ajax({
+        url: baseUrl + url,
+        type: method,
+        contentType: false,
+        processData: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        async: async,
+        data: data,
+        success: function (resp) {
+            if (resp.code == 200) {
+                fun(resp)
+            } else {
+                ElMessage.error({
+                    message: resp.msg,
+                    duration: 1200
+                });
+            }
+        },
+        error: function (e) {
+            if (e.status == undefined) {
+                ElMessage.error({
+                    message: "前端页面错误",
+                    duration: 1200
+                });
+            } else {
+                let status = e.status
+                if (status == 401) {
+                    router.push({
+                        name: 'Login'
+                    })
+                } else {
+                    ElMessage.error({
+                        message: e.responseText,
+                        duration: 1200
+                    });
+                }
+            }
+
+        }
+    })
+}
+
 //封装用于判断用户是否具有某些权限的公共函数
 app.config.globalProperties.isAuth = function (permission) {
     let permissions = localStorage.getItem("permissions");
