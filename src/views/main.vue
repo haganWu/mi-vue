@@ -103,7 +103,7 @@
             </template>
             <el-menu-item
                 index="data"
-                v-if="isAuth(['ROOT', 'DATAMANAGER:SELECT'])"
+                v-if="isAuth(['ROOT', 'DATA:SELECT'])"
                 @click="$router.push({ name: 'Reimbursement' })"
             >
               <SvgIcon name="data" class="icon-svg"/>

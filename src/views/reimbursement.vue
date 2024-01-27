@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAuth(['ROOT', 'DATAMANAGER:SELECT'])">
+  <div v-if="isAuth(['ROOT', 'DATA:SELECT'])">
 
     <el-form :inline="true" :model="dataForm" :rules="dataRule" ref="dataForm">
       <el-form-item prop="name">
@@ -17,7 +17,7 @@
         <el-button
             size="medium"
             type="danger"
-            :disabled="!isAuth(['ROOT', 'DATAMANAGER:IMPORT'])"
+            :disabled="!isAuth(['ROOT', 'DATA:IMPORT'])"
             @click="importHandle()"
         >
           导入
